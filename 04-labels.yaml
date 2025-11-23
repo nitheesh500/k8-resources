@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: labelsdemo
+  labels:
+    project: mycustomproject
+    environment: dev
+spec:
+  containers:
+  - name: my-container
+    image: nginx
