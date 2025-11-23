@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: envdemo
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+    env:
+    - name: environmenttype
+      value: dev
+    - name: course
+      value: kubernetes
