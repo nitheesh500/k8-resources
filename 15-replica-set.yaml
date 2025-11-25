@@ -9,12 +9,12 @@ spec:
       name: rs-demo
       type: replicaset
   template:
-    meatadata:
+    meatdata:
       name: rs-pod
       labels:
         name: rs-demo
         type: replicaset
     spec:
-      conatiners:
+      containers:
       - name: rs-container
         image: nginx
