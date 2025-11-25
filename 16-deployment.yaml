@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeployment
+  lables:
+    name: depLabel
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: ds
+      environmet: dev
+      type: Deployment
+  template:
+    metadata:
+      name: ds-pod
+      labels:
+        name: ds
+        environmet: dev
+        type: Deployment
+    spec:
+      containers:
+      - name: ds-container
+        image: nginx
