@@ -5,13 +5,14 @@ metadata:
 spec:
   type: NodePort
   selector:
-    projec: demo
+    project: demo
     environment: dev
     servicetype: nodeport
   ports:
     protocol: tcp
     port: 80 # service port
     targetPort: 80 # target container port
+    nodePort: 30020
 ---
 apiVersion: v1
 kind: Pod
