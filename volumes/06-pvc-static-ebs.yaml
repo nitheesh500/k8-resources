@@ -4,7 +4,7 @@ metadata:
   name: efs-pvc-static
 spec:
   storageClassName: ""
-  volumeName: efs-static
+  volumeName: "efs-static"
   accessModes:
   - ReadWriteOnce
   resources:
