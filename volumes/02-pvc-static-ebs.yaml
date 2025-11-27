@@ -1,0 +1,45 @@
+apiVersion:
+kind: PersistentVolumeClaim
+metadata:
+  name: ebs-static-pvc
+spec:
+  storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
+  volumeName: ebs-static-pv
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ebs-static-pod
+  labels:
+    purpose: "ebs-static-demo"
+spec:
+  nodeSelector:
+    topology.kubernetes.io/zone: us-east-1a
+  volumes:
+  - name: persistent storage
+    persistentVolumeClaim:
+      claimName: ebs-static-pvc
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - name: persistnet storage
+      mountPath: /usr/share/nginx/html
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ebs-static-service-demo
+spec:
+  type: Loadbalancer
+  selector:
+    purpose: "ebs-static-demo"
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30006
+
