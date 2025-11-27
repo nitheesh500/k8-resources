@@ -4,7 +4,7 @@ metadata:
   name: dynamic-pvc
 spec:
   storageClassName: ebs-sc
-  accesModes:
+  accessModes:
   - ReadWriteOnce
   resources:
     requests:
@@ -20,7 +20,7 @@ spec:
   nodeSelector:
     topology.kubernetes.io/zone: us-east-1b
   volumes:
-  - name: persistent volume  
+  - name: persistent-volume  
     persistentVolumeClaim:
       claimName: dynamic-pvc
   containers:
