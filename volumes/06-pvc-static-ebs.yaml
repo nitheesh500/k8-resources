@@ -26,7 +26,7 @@ spec:
   - name: nginx
     image: nginx
     volumeMounts:
-    - name: ps-volume
+    - name: persitent-volume
       mountPath: /usr/share/nginx/html
 ---
 kind: Service
