@@ -9,8 +9,8 @@ spec:
     storage: 5Gi
   volumeMode: FileSystem
   storageClassName: ""
-  persistentVolumeClaimPolicy: Retain
+  persistentVolumeReClaimPolicy: Retain
   csi:
     driver: efs.csi.aws.com
-    type: ext4
+    fsType: ext4
     volumeHandle: fs-09455ccfe1c017efe
