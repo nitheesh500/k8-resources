@@ -2,6 +2,6 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: ebs-sc
-provisoner: ebs.csi.aws.com
+provisioner: ebs.csi.aws.com
 reclaimPolicy: Retain
 volumeBindingMode: WaitForConsumer
