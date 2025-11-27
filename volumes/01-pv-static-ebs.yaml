@@ -9,5 +9,5 @@ spec:
     storage: 10Gi
   csi:
     driver: ebs.csi.aws.com
-    type: ext4
+    fsType: ext4
     volumeHandle: vol-0338ddebd3dc7a407
