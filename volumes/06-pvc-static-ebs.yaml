@@ -12,7 +12,7 @@ spec:
       storage: 2Gi
 ---
 apiVersion: v1
-Kind: Pod
+kind: Pod
 metadata:
   name: efs-static-pod
   labels:
@@ -29,8 +29,8 @@ spec:
     - name: persitent-volume
       mountPath: /usr/share/nginx/html
 ---
-kind: Service
 apiversion: v1
+kind: Service
 metadata:
   name: efs-static-service
 spec:
