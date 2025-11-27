@@ -4,6 +4,8 @@ metadata:
   name: ebs-static-pvc
 spec:
   storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
+  accesModes:
+  - ReadWriteOnce
   volumeName: ebs-static-pv
   resources:
     requests:
@@ -26,7 +28,7 @@ spec:
   - name: nginx
     image: nginx
     volumeMounts:
-    - name: persistnet storage
+    - name: persistent storage
       mountPath: /usr/share/nginx/html
 ---
 apiVersion: v1
