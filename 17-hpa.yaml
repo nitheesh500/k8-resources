@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hpa-Deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: hpa-demo-myapp
+      type: hpa
+  template:
+    metadata:
+      lables:
+        name: hpa-demo-myapp
+        type: hpa
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerport: 80
+        resources:
+          requests:
+            cpu: "100m"
+          limit:
+            cpu: "200m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hpa-lb-service
+spec:
+  selector:
+    name: hpa-demo-myapp
+    type: hpa
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30006
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoScaler
+metada:
+  name: hpa-demo
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hpa-Deployment
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: utilization
+        averageUtilization: 10
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cpu-stress-load-generator
+spec:
+  replicas: 2
+  selector:
+    name: stress-app
+  template:
+    metadata:
+      name: cpu-stress-load-generator
+    spec:
+      containers:
+      - name : busybox
+        image: busybox
+        command: ["/bin/sh"]
+          args:
+            - "-c"
+            - |
+              while true; do wget -q -O- http://myapp-svc/ > /dev/null; done;
+
