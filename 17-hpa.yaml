@@ -38,7 +38,7 @@ spec:
     nodePort: 30006
 ---
 apiVersion: autoscaling/v2
-kind: HorizontalPodAutoScaler
+kind: HorizontalPodAutoscaler
 metada:
   name: hpa-demo
 spec:
