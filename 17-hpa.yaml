@@ -39,7 +39,7 @@ spec:
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
-metada:
+metadata:
   name: hpa-demo
 spec:
   scaleTargetRef:
@@ -53,7 +53,7 @@ spec:
     resource:
       name: cpu
       target:
-        type: utilization
+        type: Utilization
         averageUtilization: 10
 ---
 apiVersion: apps/v1
@@ -67,14 +67,14 @@ spec:
       name: stress-app
   template:
     metadata:
-      name: cpu-stress-load-generator
+      labels:
+        name: stress-app
     spec:
       containers:
-      - name : busybox
+      - name: busybox
         image: busybox
         command: ["/bin/sh"]
-          args:
-            - "-c"
-            - |
-              while true; do wget -q -O- http://myapp-svc/ > /dev/null; done;
-
+        args:
+          - "-c"
+          - |
+            while true; do wget -q -O- http://hpa-lb-service/ > /dev/null; done
