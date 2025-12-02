@@ -7,7 +7,6 @@ spec:
   selector:
     matchLabels:
       name: hpa-demo-myapp
-      type: hpa
   template:
     metadata:
       labels:
