@@ -10,7 +10,7 @@ spec:
       type: hpa
   template:
     metadata:
-      labels:
+      lables:
         name: hpa-demo-myapp
     spec:
       containers:
@@ -64,7 +64,8 @@ metadata:
 spec:
   replicas: 2
   selector:
-    name: stress-app
+    matchLabels
+      name: stress-app
   template:
     metadata:
       name: cpu-stress-load-generator
