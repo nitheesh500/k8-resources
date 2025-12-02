@@ -10,7 +10,7 @@ spec:
       type: hpa
   template:
     metadata:
-      lables:
+      labels:
         name: hpa-demo-myapp
     spec:
       containers:
@@ -64,7 +64,7 @@ metadata:
 spec:
   replicas: 2
   selector:
-    matchLabels
+    matchLabels:
       name: stress-app
   template:
     metadata:
