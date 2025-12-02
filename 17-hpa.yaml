@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hpa-d eployment
+  name: hpa-deployment
 spec:
   replicas: 2
   selector:
@@ -29,6 +29,7 @@ kind: Service
 metadata:
   name: hpa-lb-service
 spec:
+  type: NodePort
   selector:
     name: hpa-demo-myapp
   ports:
@@ -45,7 +46,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: hpa-Deployment
+    name: hpa-deployment
   minReplicas: 2
   maxReplicas: 10
   metrics:
